@@ -1,0 +1,51 @@
+name: Driver_app
+description: "A new Flutter project for Nexoryd Driver UI."
+# This prevents the package from being accidentally published to pub.dev.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Standard icons for iOS style
+  cupertino_icons: ^1.0.8
+
+  # --- Map and Utility Packages ---
+  # Used in home_page.dart for the driver map
+  flutter_map: ^4.0.0
+  latlong2: ^0.8.1
+
+  # --- System & Hardware Helpers ---
+  # Used to open Google Maps and dial numbers
+  url_launcher: ^6.1.7
+  # Used to get the driver's current location
+  geolocator: ^9.0.2
+  # Used in profile_photo_page.dart and upload_documents_page.dart
+  image_picker: ^1.0.4
+  mapbox_maps_flutter: ^2.17.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Lints for cleaner code
+  flutter_lints: ^5.0.0
+
+flutter:
+  # This line ensures that Material Icons are included
+  uses-material-design: true
+
+  # If you decide to add local images or custom fonts later, 
+  # you would add them here.
+  # assets:
+  #   - assets/images/logo.png
+
+  # fonts:
+  #   - family: NexorydFont
+  #     fonts:
+  #       - asset: fonts/Custom-Regular.ttf
