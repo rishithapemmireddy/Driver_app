@@ -32,16 +32,19 @@ dependencies:
   flutter_keyboard_visibility: ^6.0.0 # UI adjustment when typing
 
   
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  
+  # Firebase packages
   firebase_core: ^3.10.1
   firebase_auth: ^5.4.1
   cloud_firestore: ^5.6.1
 
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
   # Lints for cleaner code
   flutter_lints: ^5.0.0
+
+ 
 
 flutter:
   # This line ensures that Material Icons are included

@@ -13,6 +13,8 @@ import 'pages/upload_documents_page.dart';
 import 'pages/verification_pending_page.dart';
 import 'pages/home_dashboard.dart';
 import 'pages/trip_details_page.dart';
+import 'pages/edit_profile_page.dart';
+import 'pages/documents_display_page.dart';
 
 Future<void> main() async {
   // Ensure Flutter framework is initialized
@@ -58,6 +60,8 @@ class DriverApp extends StatelessWidget {
         '/pending': (context) => const VerificationPendingPage(),
         '/home': (context) => const HomeDashboard(),
         '/trip_details': (context) => const TripDetailsPage(),
+        '/edit_profile': (context) => const EditProfilePage(),
+        '/documents': (context) => const DocumentsDisplayPage(),
       },
     );
   }

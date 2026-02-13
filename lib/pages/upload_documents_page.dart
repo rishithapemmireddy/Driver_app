@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../widgets/step_indicator.dart';
+import '../models/app_data.dart';
 
 class UploadDocumentsPage extends StatefulWidget {
   const UploadDocumentsPage({super.key});
@@ -11,6 +12,7 @@ class UploadDocumentsPage extends StatefulWidget {
 
 class _UploadDocumentsPageState extends State<UploadDocumentsPage> {
   final ImagePicker _picker = ImagePicker();
+  final appData = AppData();
   
   // Branding Colors from your code
   final Color logoBlue = const Color(0xFF154FB9);
@@ -25,6 +27,18 @@ class _UploadDocumentsPageState extends State<UploadDocumentsPage> {
     "Insurance": "Upload insurance file",
     "Bike RC": "Upload bike rc file",
   };
+
+  @override
+  void initState() {
+    super.initState();
+    // Load previously saved documents
+    selectedFiles = {
+      "Aadhar Card": appData.getDocument("Aadhar Card"),
+      "Driving Licence": appData.getDocument("Driving Licence"),
+      "Insurance": appData.getDocument("Insurance"),
+      "Bike RC": appData.getDocument("Bike RC"),
+    };
+  }
 
   // Method to handle file selection from gallery
   Future<void> _pickFile(String key) async {
@@ -101,6 +115,10 @@ class _UploadDocumentsPageState extends State<UploadDocumentsPage> {
               height: 56,
               child: ElevatedButton(
                 onPressed: () {
+                  // Save all documents
+                  selectedFiles.forEach((key, value) {
+                    appData.updateDocument(key, value);
+                  });
                    Navigator.pushNamed(context, '/pending');
                 },
                 style: ElevatedButton.styleFrom(

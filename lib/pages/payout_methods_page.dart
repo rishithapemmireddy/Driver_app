@@ -167,7 +167,7 @@ class _PayoutMethodsPageState extends State<PayoutMethodsPage> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(_bank!.holderName, style: const TextStyle(fontWeight: FontWeight.bold)), const SizedBox(height: 6), Text('${'XXXX XXXX ' + _bank!.accountNumber.substring(_bank!.accountNumber.length-4)}', style: const TextStyle(letterSpacing: 1.5))]), PopupMenuButton(itemBuilder: (c) => [const PopupMenuItem(child: Text('Edit')), const PopupMenuItem(child: Text('Remove'))])]),
+                  Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(_bank!.holderName, style: const TextStyle(fontWeight: FontWeight.bold)), const SizedBox(height: 6), Text('${'XXXX XXXX ' + (_bank!.accountNumber.length >= 4 ? _bank!.accountNumber.substring(_bank!.accountNumber.length-4) : _bank!.accountNumber)}', style: const TextStyle(letterSpacing: 1.5))]), PopupMenuButton(itemBuilder: (c) => [const PopupMenuItem(child: Text('Edit')), const PopupMenuItem(child: Text('Remove'))])]),
                   const SizedBox(height: 8),
                   Text('IFSC Code : ${_bank!.ifsc}', style: const TextStyle(color: Colors.black54)),
                 ]),

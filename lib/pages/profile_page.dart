@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 import 'payout_methods_page.dart';
 import 'subscription_page.dart';
+import 'edit_profile_page.dart';
+import 'documents_display_page.dart';
+import '../models/app_data.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  final appData = AppData();
 
   Widget _buildListCard(List<Widget> children) {
     return Container(
@@ -40,17 +50,19 @@ class ProfilePage extends StatelessWidget {
               Row(children: [
                 CircleAvatar(radius: 30, backgroundColor: Colors.white24, child: const Icon(Icons.person, size: 30, color: Colors.white)),
                 const SizedBox(width: 12),
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: const [
-                  Text('Rajesh Kumar', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
-                  SizedBox(height: 6),
-                  Text('+91 98765 43210', style: TextStyle(color: Colors.white70)),
-                ])
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(appData.userData.fullName, style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 6),
+                    Text(appData.userData.phoneNumber, style: const TextStyle(color: Colors.white70)),
+                  ]),
+                )
               ]),
               const SizedBox(height: 12),
               Container(
                 decoration: BoxDecoration(color: Colors.white24, borderRadius: BorderRadius.circular(20)),
                 padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-                child: const Text('Member since Nov 2023', style: TextStyle(color: Colors.white)),
+                child: Text('Member since ${appData.userData.memberSince}', style: const TextStyle(color: Colors.white)),
               ),
             ]),
           ),
@@ -62,9 +74,9 @@ class ProfilePage extends StatelessWidget {
               margin: const EdgeInsets.fromLTRB(16, 12, 16, 12),
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12), boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0,2))]),
-              child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: const [
-                Column(children: [Icon(Icons.star, color: Colors.amber), SizedBox(height: 6), Text('4.8', style: TextStyle(fontWeight: FontWeight.bold)), Text('Rating', style: TextStyle(color: Colors.black54))]),
-                Column(children: [Text('135', style: TextStyle(fontWeight: FontWeight.bold)), SizedBox(height: 6), Text('Rides', style: TextStyle(color: Colors.black54))])
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+                Column(children: [const Icon(Icons.star, color: Colors.amber), const SizedBox(height: 6), Text('${appData.userData.rating}', style: const TextStyle(fontWeight: FontWeight.bold)), const Text('Rating', style: TextStyle(color: Colors.black54))]),
+                Column(children: [Text('${appData.userData.totalRides}', style: const TextStyle(fontWeight: FontWeight.bold)), const SizedBox(height: 6), const Text('Rides', style: TextStyle(color: Colors.black54))])
               ]),
             ),
           ),
@@ -74,9 +86,15 @@ class ProfilePage extends StatelessWidget {
               children: [
                 const Padding(padding: EdgeInsets.symmetric(horizontal: 16.0), child: Text('ACCOUNT', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black54))),
                 _buildListCard([
-                  _tile(Icons.person_outline, 'Edit Profile'),
+                  _tile(Icons.person_outline, 'Edit Profile', onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const EditProfilePage())).then((_) {
+                      setState(() {});
+                    });
+                  }),
                   const Divider(height: 1),
-                  _tile(Icons.location_on_outlined, 'Documents', onTap: () { Navigator.pushNamed(context, '/profile_photo'); }),
+                  _tile(Icons.location_on_outlined, 'Documents', onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (_) => const DocumentsDisplayPage()));
+                  }),
                   const Divider(height: 1),
                   _tile(Icons.credit_card_outlined, 'Bank Details', onTap: () { Navigator.push(context, MaterialPageRoute(builder: (_) => const PayoutMethodsPage())); }),
                   const Divider(height: 1),

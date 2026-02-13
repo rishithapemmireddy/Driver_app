@@ -1,21 +1,59 @@
 {
   "project_info": {
-    "project_number": "959508689617",
-    "project_id": "driver-app-f8c2c",
-    "storage_bucket": "driver-app-f8c2c.firebasestorage.app"
+    "project_number": "97581640765",
+    "project_id": "nexoryd",
+    "storage_bucket": "nexoryd.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:959508689617:android:bd2a747f26d4160d1c8bf0",
+        "mobilesdk_app_id": "1:97581640765:android:81feac324a836ed6884e54",
         "android_client_info": {
-          "package_name": "com.example.driver_app"
+          "package_name": "com.example.flutter_application_rider"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCdiATdNhedr9tQEmkkeE2XQxbdKf5AMkE"
+          "current_key": "AIzaSyCXYpGvXrSI72zBUOWtcYyTwnQrDgLNkfo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97581640765:android:f2c169283495b984884e54",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_rider_v2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXYpGvXrSI72zBUOWtcYyTwnQrDgLNkfo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97581640765:android:27a5837f0573d7b3884e54",
+        "android_client_info": {
+          "package_name": "com.nexodriver.driver"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXYpGvXrSI72zBUOWtcYyTwnQrDgLNkfo"
         }
       ],
       "services": {

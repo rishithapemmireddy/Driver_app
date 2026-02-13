@@ -47,30 +47,28 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCQPbUx0gko3tX0qXiPbAg6pEifzaTNYu0',
-    appId: '1:97581640765:web:7cda3ef870863aab884e54',
-    messagingSenderId: '97581640765',
-    projectId: 'nexoryd',
-    authDomain: 'nexoryd.firebaseapp.com',
-    storageBucket: 'nexoryd.firebasestorage.app',
-    measurementId: 'G-VKDRY8JTYH',
+    apiKey: 'AIzaSyCi3dziqqe1HaFynyi6ZZ_xLnMmCZ8P6As',
+    appId: '1:959508689617:web:92f62beb51288f681c8bf0',
+    messagingSenderId: '959508689617',
+    projectId: 'driver-app-f8c2c',
+    authDomain: 'driver-app-f8c2c.firebaseapp.com',
+    storageBucket: 'driver-app-f8c2c.firebasestorage.app',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCXYpGvXrSI72zBUOWtcYyTwnQrDgLNkfo',
-    appId: '1:97581640765:android:27a5837f0573d7b3884e54',
-    messagingSenderId: '97581640765',
-    projectId: 'nexoryd',
-    storageBucket: 'nexoryd.firebasestorage.app',
+    apiKey: 'AIzaSyCdiATdNhedr9tQEmkkeE2XQxbdKf5AMkE',
+    appId: '1:959508689617:android:bd2a747f26d4160d1c8bf0',
+    messagingSenderId: '959508689617',
+    projectId: 'driver-app-f8c2c',
+    storageBucket: 'driver-app-f8c2c.firebasestorage.app',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyCQPbUx0gko3tX0qXiPbAg6pEifzaTNYu0',
-    appId: '1:97581640765:web:7cda3ef870863aab884e54',
-    messagingSenderId: '97581640765',
-    projectId: 'nexoryd',
-    authDomain: 'nexoryd.firebaseapp.com',
-    storageBucket: 'nexoryd.firebasestorage.app',
-    measurementId: 'G-VKDRY8JTYH',
+    apiKey: 'AIzaSyCi3dziqqe1HaFynyi6ZZ_xLnMmCZ8P6As',
+    appId: '1:959508689617:web:af84923ca2ae72331c8bf0',
+    messagingSenderId: '959508689617',
+    projectId: 'driver-app-f8c2c',
+    authDomain: 'driver-app-f8c2c.firebaseapp.com',
+    storageBucket: 'driver-app-f8c2c.firebasestorage.app',
   );
 }

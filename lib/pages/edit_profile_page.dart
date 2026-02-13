@@ -1,28 +1,22 @@
 import 'package:flutter/material.dart';
-import '../widgets/step_indicator.dart';
 import '../models/app_data.dart';
 
-class ProfileDetailsPage extends StatefulWidget {
-  const ProfileDetailsPage({super.key});
+class EditProfilePage extends StatefulWidget {
+  const EditProfilePage({Key? key}) : super(key: key);
 
   @override
-  _ProfileDetailsPageState createState() => _ProfileDetailsPageState();
+  State<EditProfilePage> createState() => _EditProfilePageState();
 }
 
-class ProfileDetailsPageState {
-}
-
-class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
-  String selectedGender = "Male";
+class _EditProfilePageState extends State<EditProfilePage> {
   final appData = AppData();
-
-  // Text controllers
+  
   late TextEditingController _nameController;
   late TextEditingController _emailController;
   late TextEditingController _phoneController;
   late TextEditingController _addressController;
+  late String _selectedGender;
 
-  // Branding Colors
   final Color logoBlue = const Color(0xFF154FB9);
   final Color darkBlueButton = const Color(0xFF084594);
   final Color secondaryText = const Color(0xFF5E6D82);
@@ -35,7 +29,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
     _emailController = TextEditingController(text: appData.userData.email);
     _phoneController = TextEditingController(text: appData.userData.phoneNumber);
     _addressController = TextEditingController(text: appData.userData.address);
-    selectedGender = appData.userData.gender;
+    _selectedGender = appData.userData.gender;
   }
 
   @override
@@ -52,114 +46,81 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
     return Scaffold(
       backgroundColor: scaffoldBg,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: logoBlue,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Column(
+        title: const Text(
+          "Edit Profile",
+          style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Profile Details",
-              style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+            _label("Full Name"),
+            _field(_nameController, Icons.person_outline, "Enter your name"),
+            
+            _label("Email Address"),
+            _field(_emailController, Icons.email_outlined, "Enter your email"),
+            
+            _label("Mobile Number"),
+            _field(_phoneController, Icons.phone_outlined, "Enter your mobile number"),
+            
+            _label("Gender"),
+            Row(
+              children: [
+                _genderBtn("Male"),
+                const SizedBox(width: 10),
+                _genderBtn("Female"),
+                const SizedBox(width: 10),
+                _genderBtn("Others"),
+              ],
             ),
-            Text(
-              "Let's add your general details",
-              style: TextStyle(color: secondaryText, fontSize: 12),
-            ),
-          ],
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16, top: 20),
-            child: Text(
-              "Step 1 of 4",
-              style: TextStyle(color: logoBlue, fontWeight: FontWeight.bold, fontSize: 14),
-            ),
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          const SizedBox(height: 10),
-          // --- Step Progress Bar ---
-          const Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: StepIndicator(currentStep: 1),
-          ),
-          
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.all(24.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _label("Full Name"),
-                  _field(_nameController, Icons.person_outline, "Enter your name"),
-                  
-                  _label("Email Address"),
-                  _field(_emailController, Icons.email_outlined, "Enter your email"),
-                  
-                  _label("Mobile Number"),
-                  _field(_phoneController, Icons.phone_outlined, "Enter your mobile number"),
-                  
-                  _label("Gender"),
-                  Row(
-                    children: [
-                      _genderBtn("Male"),
-                      const SizedBox(width: 10),
-                      _genderBtn("Female"),
-                      const SizedBox(width: 10),
-                      _genderBtn("Others"),
-                    ],
-                  ),
-                  
-                  const SizedBox(height: 20),
-                  _label("Address"),
-                  _field(_addressController, Icons.location_on_outlined, "Enter your address", isLarge: true),
-                ],
-              ),
-            ),
-          ),
-
-          // --- Next Button ---
-          Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: SizedBox(
+            
+            const SizedBox(height: 20),
+            _label("Address"),
+            _field(_addressController, Icons.location_on_outlined, "Enter your address", isLarge: true),
+            
+            const SizedBox(height: 32),
+            SizedBox(
               width: double.infinity,
               height: 56,
               child: ElevatedButton(
                 onPressed: () {
-                  // Save data
                   appData.updateUserProfile(
                     fullName: _nameController.text,
                     email: _emailController.text,
                     phoneNumber: _phoneController.text,
-                    gender: selectedGender,
+                    gender: _selectedGender,
                     address: _addressController.text,
                   );
-                  Navigator.pushNamed(context, '/vehicle_details');
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Profile updated successfully!')),
+                  );
+                  Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: darkBlueButton,
+                  backgroundColor: logoBlue,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                   elevation: 0,
                 ),
                 child: const Text(
-                  "Next",
+                  "Save Changes",
                   style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w600),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
-  // Helper Widget for Input Labels
   Widget _label(String text) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8, top: 16),
@@ -170,7 +131,6 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
     );
   }
 
-  // Helper Widget for Text Fields
   Widget _field(TextEditingController controller, IconData icon, String hint, {bool isLarge = false}) {
     return TextField(
       controller: controller,
@@ -195,12 +155,11 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
     );
   }
 
-  // Helper Widget for Gender Selection Buttons
   Widget _genderBtn(String title) {
-    bool isSelected = selectedGender == title;
+    bool isSelected = _selectedGender == title;
     return Expanded(
       child: GestureDetector(
-        onTap: () => setState(() => selectedGender = title),
+        onTap: () => setState(() => _selectedGender = title),
         child: Container(
           height: 50,
           alignment: Alignment.center,
